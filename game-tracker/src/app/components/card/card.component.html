@@ -1,0 +1,16 @@
+<div class="card">
+  <img class="card-img-top" [src]="jogo.thumb" alt="Card image cap">
+  <div class="card-body p-2">
+    <h5 class="card-title">{{ jogo.title }}</h5>
+    <div class="d-flex">
+      <button type="button" class="btn btn-primary">DETALHES</button>
+
+      <div class="ml-auto">
+        <p class="valor-original mb-0 mr-2 text-right">$ {{ jogo.normalPrice }}</p>
+        <p class="valor-oferta mb-0 mr-2 text-right">$ {{ jogo.salePrice }}</p>
+      </div>
+
+      <button type="button" class="btn btn-secondary">{{ labelPorcentagem() }}</button>
+    </div>
+  </div>
+</div>

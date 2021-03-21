@@ -1,0 +1,38 @@
+@import './../../../styles/vars';
+@import './../../../styles/bootstrap/mixins';
+
+@mixin texto-padrao {
+  font-size: 14px;
+  line-height: 180%;
+}
+
+footer {
+  background-color: $primary;
+}
+
+.footer-container {
+  @include container();
+}
+
+.paragrafo-direitos {
+  @include texto-padrao();
+  font-weight: 300;
+  text-align: justify;
+}
+
+.informacoes-adicionais {
+  @include texto-padrao();
+  font-weight: 700;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: $resolution-mobile) {
+  .informacoes-adicionais {
+    text-align: center;
+    margin-right: 0px !important;
+  }
+
+  .informacoes-adicionais-container {
+    flex-direction: column;
+  }
+}

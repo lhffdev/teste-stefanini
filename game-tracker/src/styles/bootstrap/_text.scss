@@ -1,0 +1,20 @@
+@import './../vars';
+
+@mixin texto-padrao {
+  color: $white;
+  font-style: $font-style;
+  font-family: $font-family;
+}
+
+p {
+  @include texto-padrao();
+}
+
+h1 {
+  @include texto-padrao();
+}
+
+label {
+  @include texto-padrao();
+}
+

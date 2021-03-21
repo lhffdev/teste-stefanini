@@ -1,0 +1,47 @@
+@import './../vars';
+
+@mixin box-shadow {
+  box-shadow: $box-shadow;
+}
+
+.input-group {
+  @include box-shadow();
+}
+
+.form-control {
+  font-size: 18px !important;
+  font-weight: 200 !important;
+  font-style: $font-style;
+}
+
+.form-control-lg {
+  @include box-shadow();
+}
+
+.form-group {
+  label {
+    text-shadow: $box-shadow;
+  }
+
+  .input-group-text {
+    background-color: $primary;
+  }
+}
+
+.select-option {
+  option:checked {
+    color: #C70160;
+  }
+}
+
+@media screen and (max-width: $resolution-mobile) {
+  .form-control {
+    font-size: 14px !important;
+  }
+
+  .form-group {
+    label {
+      font-size: 14px !important;
+    }
+  }
+}

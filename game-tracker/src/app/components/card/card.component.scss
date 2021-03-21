@@ -1,0 +1,85 @@
+@import './../../../styles/vars';
+
+@mixin btn-texto-padrao {
+  color: $white;
+  font-style: $font-style;
+  font-family: $font-family;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+}
+
+@mixin btn-texto-mobile {
+  font-size: 14px !important;
+  font-weight: 900 !important;
+}
+
+.btn-primary {
+  @include btn-texto-padrao();
+  background-color: $btn-color-primary !important;
+}
+
+.btn-secondary {
+  @include btn-texto-padrao();
+  width: 87px;
+  background-color: $btn-color-secondary !important;
+}
+
+.valor-original {
+  text-decoration: line-through;
+  font-size: 12px;
+}
+
+.valor-oferta {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.card {
+  height: 251px;
+  max-width: 380px;
+  min-width: 300px;
+  margin: auto;
+
+  .card-img-top {
+    height: 147px;
+  }
+
+  .card-title {
+    width: 350px;
+    margin-bottom: 20px;
+    color: $white;
+    font-style: $font-style;
+    font-family: $font-family;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+@media screen and (max-width: $resolution-mobile) {
+  .btn-primary {
+    @include btn-texto-mobile();
+  }
+
+  .btn-secondary {
+    @include btn-texto-mobile();
+    width: 74px;
+  }
+
+  .valor-original {
+    font-size: 10px;
+  }
+
+  .valor-oferta {
+    font-size: 14px
+  }
+
+  .card {
+   height: 238px;
+  }
+
+  .card-title {
+    font-size: 16px;
+    width: 280px !important;
+  }
+}

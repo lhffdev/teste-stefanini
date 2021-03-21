@@ -1,0 +1,6 @@
+@import './../vars';
+
+@mixin container {
+  max-width: $max-width-page;
+  flex: 1 1 auto
+}
