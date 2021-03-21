@@ -22,7 +22,7 @@
         <div class="row">
           <label for="ordenar" class="label-ordenar col-md-4 col-lg-4 col-xl-4 col-form-label ml-auto text-shadow">Ordenar por:</label>
           <div class="input-ordenar col-12 col-md-7 col-lg-5 col-xl-4">
-            <select (change)="ordernarJogos($event.target.value)" id="ordenar" class="select-option form-control form-control-lg">
+            <select #selectOrdenar (change)="ordernarJogos($event.target.value)" id="ordenar" class="select-option form-control form-control-lg">
               <option selected value="porcentagem-de-desconto">% de desconto</option>
               <option value="maior-preco">Maior preço</option>
               <option value="menor-preco">Menor preço</option>
@@ -37,6 +37,14 @@
       <ng-container *ngFor="let jogo of listaJogos">
         <app-card [jogo]="jogo" class="app-card"></app-card>
       </ng-container>
+    </div>
+
+    <div *ngIf="exibirLoader" class="d-flex justify-content-center mb-5">
+      <div class="spinner-border text-secondary"></div>
+    </div>
+
+    <div *ngIf="exibirBotaoDeCarregamento && !procurar" class="d-flex justify-content-center mb-5 ml-2 mr-2">
+      <button (click)="carregarJogos()" type="button" class="btn btn-primary" [disabled]="exibirLoader">Carregar mais</button>
     </div>
 
   </div>

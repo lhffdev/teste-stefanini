@@ -39,6 +39,23 @@
     margin-right: 10px;
   }
 
+  .btn-primary {
+    font-size: 18px;
+    font-weight: 200;
+    padding: 10px;
+    max-width: 380px;
+    width: 100%;
+
+    &:hover {
+      background-color: $primary;
+    }
+  }
+
+  .spinner-border {
+    height: 50px;
+    width: 50px;
+  }
+
   @media only screen and (max-width: 767px) {
     h1 {
       text-align: center;
@@ -66,6 +83,11 @@
 
     .select-option {
       padding: 0px 0px 0px 2px;
+    }
+
+    .spinner-border {
+      height: 40px;
+      width: 40px;
     }
   }
 }

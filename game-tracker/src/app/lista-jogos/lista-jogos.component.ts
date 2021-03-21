@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Jogo } from '../interfaces/jogo';
 import { JogosService } from '../services/jogos.service';
 
@@ -9,31 +9,51 @@ import { JogosService } from '../services/jogos.service';
 })
 export class ListaJogosComponent implements OnInit {
 
-  jogos: Jogo[];
+  jogos: Jogo[] = [];
   procurar: string;
+  page: number = 1;
+  pararCarregamentoJogos: boolean = false;
+  exibirLoader: boolean = true;
+  exibirBotaoDeCarregamento: boolean = false;
+
+  @ViewChild('selectOrdenar')
+  selectOrdenar: ElementRef;
 
   constructor(
     private jogosService: JogosService
   ) { }
 
   ngOnInit() {
-    this.jogosService.jogos.subscribe(jogos => {
-      this.jogos = jogos.map(jogo => {
-        return {...jogo, discountPercentage: this.calcularPorcentagemDesconto(jogo)}
-      });
-    });
+    this.carregarJogos();
+  }
 
-    this.ordernarJogos('porcentagem-de-desconto');
+  carregarJogos() {
+    if (!this.pararCarregamentoJogos) {
+      this.exibirLoader = true;
+
+      this.jogosService.buscarJogos(this.page).subscribe(jogos => {
+        if (!jogos.length) {
+          this.pararCarregamentoJogos = true;
+          this.exibirLoader = false;
+          this.exibirBotaoDeCarregamento = false;
+          return;
+        }
+
+        this.jogos = [...this.jogos, ...jogos || []]
+        this.page += 1;
+
+        this.ordernarJogos(this.selectOrdenar.nativeElement.value);
+
+        this.exibirLoader = false;
+        this.exibirBotaoDeCarregamento = true;
+      });
+    }
   }
 
   get listaJogos(): Jogo[] {
     if (!this.procurar) return this.jogos;
 
     return this.jogos.filter(jogo => jogo.title.toUpperCase().includes(this.procurar.toUpperCase()));
-  }
-
-  calcularPorcentagemDesconto(jogo: Jogo): number {
-    return Math.round(100 - parseFloat(jogo.salePrice) * 100 / parseFloat(jogo.normalPrice));
   }
 
   ordernarJogos(tipoDeOrdenacao: string) {

@@ -1,5 +1,5 @@
 <div class="card">
-  <img class="card-img-top" [src]="jogo.thumb" alt="Card image cap">
+  <img class="card-img-top" [src]="jogo.thumb" onerror="this.src='./../../../assets/imgs/card-sem-imagem.png'">
   <div class="card-body p-2">
     <h5 class="card-title">{{ jogo.title }}</h5>
     <div class="d-flex">
